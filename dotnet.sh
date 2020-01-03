@@ -4,6 +4,6 @@ function mentor-dotnet() {
 	TEST_FILE=$(find $TARGET_DIR -type f -name \*Test.cs)
 	echo "Removing skips: $TEST_FILE"
 	sed -i 's/Fact(Skip = "Remove to run test")/Fact/g' $TEST_FILE
-	docker run -it --rm -v "$(pwd -P)":/test microsoft/dotnet dotnet test /test
+	docker run -it --rm -v "$(pwd -P)":/test  mentor/dotnet /bin/sh -c "cd test && dotnet test"
 }
 
